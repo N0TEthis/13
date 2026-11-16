@@ -5,7 +5,7 @@ using namespace std;
 
 class Text {
 private:
-    string text;    // весь текст одной строкой
+    string text;// весь текст одной строкой
 
     // является ли символ концом предложения
     static bool isEnd(char c) {
@@ -157,16 +157,14 @@ public:
         int n = 0;
         while (findSentence(n + 1, start, end))
             n++;
-        return n;
-    }
+        return n;}
 
     // предложение с номером num123 
     string getSentence(int num) const {
         int start, end;
         if (!findSentence(num, start, end))
             return "";
-        return text.substr(start, end - start);
-    }
+        return text.substr(start, end - start);}
 
     // саааамое длииинное предложееение
     string longestSentence() const {
@@ -175,10 +173,8 @@ public:
         for (int i = 1; i <= n; i++) {
             string cur = getSentence(i);
             if (i == 1 || cur.length() > best.length())
-                best = cur;
-        }
-        return best;
-    }
+                best = cur;}
+        return best;}
 
     // смое крткое прдлжение
     string shortestSentence() const {
@@ -187,10 +183,8 @@ public:
         for (int i = 1; i <= n; i++) {
             string cur = getSentence(i);
             if (i == 1 || cur.length() < best.length())
-                best = cur;
-        }
-        return best;
-    }
+                best = cur;}
+        return best;}
 
     // есть ли в тексте заданное предложение
     bool contains(string s) const {
@@ -210,8 +204,7 @@ public:
         for (int i = 1; i <= n; i++)
             if (getSentence(i) != other.getSentence(i))
                 return false;
-        return true;
-    }
+        return true;}
 };
 
 // ввод строки
@@ -219,8 +212,7 @@ string readLine(const string& prompt) {
     string s;
     cout << prompt;
     getline(cin, s);
-    return s;
-}
+    return s;}
 
 // ввод целого числа с проверкой
 int readInt(const string& prompt) {
@@ -229,8 +221,7 @@ int readInt(const string& prompt) {
     while (!(cin >> x)) {
         cin.clear();
         cin.ignore(10000, '\n');
-        cout << "нужно ввести число: ";
-    }
+        cout << "нужно ввести число: ";}
     cin.ignore(10000, '\n');
     return x;
 }
@@ -254,13 +245,12 @@ int main() {
              << "9 - равны ли два текста\n"
              << "0 - выход\n";
         choice = readInt("ваш выбор: ");
-
         if (choice == 1) {
             string s = readLine("введите предложение: ");
             if (t.addSentence(s))
                 cout << "предложение добавлено.\n";
             else
-                cout << "пустое предложение.\n";
+                cerr << "пустое предложение.\n";
         }
         else if (choice == 2) {
             int num = readInt("перед каким номером вставить: ");
@@ -268,14 +258,14 @@ int main() {
             if (t.insertSentence(num, s))
                 cout << "предложение вставлено.\n";
             else
-                cout << "нельзя вставить: неверный номер или пустое предложение.\n";
+                cerr << "нельзя вставить...неверный номер или пустое предложение.\n";
         }
         else if (choice == 3) {
             int num = readInt("номер удаляемого предложения: ");
             if (t.removeSentence(num))
                 cout << "предложение удалено.\n";
             else
-                cout << "предложения с таким номером нет.\n";
+                cerr << "предложения с таким номером нет.\n";
         }
         else if (choice == 4) {
             cout << "букв: " << t.countLetters() << "\n";
@@ -286,21 +276,21 @@ int main() {
             int num = readInt("номер предложения: ");
             string s = t.getSentence(num);
             if (s == "")
-                cout << "предложения с таким номером нет.\n";
+                cerr << "предложения с таким номером нет.\n";
             else
                 cout << "предложение: " << s << "\n";
         }
         else if (choice == 6) {
             if (t.countSentences() == 0)
-                cout << "текст пуст.\n";
+                cerr << "текст пуст.\n";
             else
                 cout << "саааамое длииииинное: " << t.longestSentence() << "\n";
         }
         else if (choice == 7) {
             if (t.countSentences() == 0)
-                cout << "Текст пуст.\n";
+                cerr << "текст пуст.\n";
             else
-                cout << "Смое крткое: " << t.shortestSentence() << "\n";
+                cout << "смое крткое: " << t.shortestSentence() << "\n";
         }
         else if (choice == 8) {
             string s = readLine("введите предложение для поиска: ");
@@ -314,15 +304,13 @@ int main() {
             if (t.isEqual(t2))
                 cout << "тексты равны.\n";
             else
-                cout << "тексты не равны.\n";
-        }
+                cout << "тексты не равны.\n";}
         else if (choice == 0) {
-            cout << "До встречи 1!!\n";
-        }
+            cout << "До встречи 1!!\n";}
         else {
-            cout << "нет такого пункта меню.\n";
-        }
+            cerr << "нет такого пункта меню.\n";}
     } while (choice != 0);
 
     return 0;
 }
+
